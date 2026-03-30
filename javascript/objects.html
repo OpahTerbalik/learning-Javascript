@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Objects</title>
+</head>
+<body>
+    <script>
+        //objects is group multiple variable together.
+
+        /* this is called objects */
+        const product = {
+            name: 'socks',
+            price: 1090,
+            ['delivery-time']: '1 day', //to create a variable inside object if using bracket notation 
+        };
+        console.log(product);
+        console.log(product.name); /*(cariable, property)*/
+        console.log(product.price);
+
+        product.name = 'cutton socks'; /* change a value */
+        product.price = 2000;
+        console.log(product);
+        console.log(product.name);
+        console.log(product.price);
+        console.log(product['delivery-time']); /* calling object property using bracket notation (because of "-" symbol) */
+    </script>
+</body>
+</html>

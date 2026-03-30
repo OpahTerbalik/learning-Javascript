@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CelsiusToFahrenheit</title>
+</head>
+<body>
+    <h2>please insert a value </h2>
+
+    <script>
+        /* convert temperature */
+        function convertToFahrenheit (celsius) {
+            const fahrenheit = (celsius * 9/5) + 32;
+
+            return(fahrenheit);
+        }
+
+        function convertToCelsius (fahrenheit) {
+            const celsius = (fahrenheit - 32) * 5/9;
+
+            return(celsius);
+        }
+        
+        function convertTamperature (degrees, unit) {
+            
+            
+            if (unit === 'c') {
+                const result = convertToFahrenheit(degrees)
+                return result + ' f'
+            } else if (unit === 'f') {
+                const result = convertToCelsius(degrees)
+                return result + ' c'
+            }
+        }
+
+        console.log(convertTamperature(25, 'c'));
+        console.log(convertTamperature(86, 'f'));
+
+
+        /* convert length */
+        function convertLength(length, from , to) {
+            const miles = 1.6; 
+            
+            /* 1 miles = 1.6km 
+            1 miles = 5280ft
+            1 km = 3281ft */
+
+            if (from === 'miles' && to === 'km') {
+                return length * 1.6 + 'km';
+            } else if (from === 'km' && to === 'miles') {
+                return length / 1.6 + 'miles';
+            } else if (from === 'miles' && to === 'ft') {
+                return length * 5280 + 'ft'; 
+            }else if (from === 'km' && to === 'ft') {
+                return length * 3281 + 'ft';
+            }else {
+                return `Invalid unit: ${from} to ${to}`;
+            }
+        }
+        console.log(convertLength(5, 'miles', 'km'));
+        console.log(convertLength(32, 'km', 'miles'));
+        console.log(convertLength(5, 'miles', 'ft'));
+        console.log(convertLength(5, 'km', 'ft'));
+    </script>
+</body>
+</html>

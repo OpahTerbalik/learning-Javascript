@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>clock</title>
+</head>
+<body>
+    <h2>card quantity</h2>
+    
+    <button onclick="
+    console.log(`cart quantity = ${cartQuantity}`);">show quantity</button>
+    
+    <button onclick="updateCart(1);">add to cart</button>
+    
+    <button onclick="updateCart(2);">+2</button>
+    
+    <button onclick="updateCart(3);">+3</button>
+    
+    <button onclick="updateCart(4);">+4</button>
+    
+    <button onclick="updateCart(5)">+5</button>
+    
+    <button onclick="updateCart(-1); ">remove from cart</button>
+    
+    <button onclick="updateCart(-2);">-2</button>
+    
+    <button onclick="updateCart(-3);">-3</button>
+    
+    <button onclick="cartQuantity = 0; console.log(`cart was reset.`); console.log(`cart quantity = ${cartQuantity}`);">resetcart</button>
+
+
+
+    <script>
+        //clock 
+        const hour = 22;
+        const name = 'Adam';
+
+        if(hour >= 6 && hour <= 12) {
+            console.log(`good morning ${name}`);
+        }else if (hour >= 13 && hour <= 17){
+            console.log(`good afternoon ${name}`);
+        }else {
+            console.log(`goodnight ${name}`);
+        }
+
+        //age
+        const age = 65;
+        const isHoliday = true;
+        
+
+        const discount = (age <= 6 || age >= 65) && !isHoliday ? 'yes you got discount' : 'you can\'t get a discount';
+        console.log(discount);
+        // console.log(isHoliday);
+
+
+        //coin flip
+        const sideCoin = Math.random();
+        const guess = 'head';
+
+        const result = (sideCoin < .5) ? 'head' : 'tail';
+        console.log(result);
+
+        if(guess === result) {
+            console.log(`The result is ${result}. You win!`);
+        }else{
+            console.log(`The result is ${result}. You lose!`);
+        }
+        // cart quantity using parameter inside function => ()
+        let cartQuantity = 0;
+
+        function updateCart (change) {
+            if (cartQuantity + change > 10) {
+                alert('The cart is full !');
+            } else if (cartQuantity + change < 0){
+                alert('not enough itme !')
+            } else {
+                cartQuantity += change;
+                console.log(`Cart quantity: ${cartQuantity}`);
+            }
+        }
+
+
+    </script>
+</body>
+</html>
