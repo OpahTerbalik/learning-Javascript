@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM Project</title>
+</head>
+<body>
+    <h1>DOM Projects</h1>
+    <h2>Youtube Subscribe Button</h2>
+    <button onclick="subsButton();" class="subs-button">Subscribe</button>
+
+    <p>rock paper scissors game</p>
+    <a href="rock-paper-scissor-update2.html">Click Here</a>
+
+    <p>Amazon Shipping Calculator</p>
+    <p>order under $40 -  +$10 Shipping</p>
+    <p>oredr over $40 - Free Shipping</p>
+    <input onkeydown="pressEnter(event);" class="costInput" placeholder="Cost of order">
+    <button onclick="costOrder();">Calculate</button>
+    <p class="totalCost"></p>
+
+
+    <script>
+
+        function pressEnter(event) {
+            if (event.key === 'Enter') {
+                costOrder();
+            }
+        }
+
+        function costOrder() {
+
+            const inputElement = document.querySelector('.costInput');
+
+            let cost = Number(inputElement.value);
+
+            if (cost < 40) {
+                cost = cost + 10;
+            }
+            
+            document.querySelector('.totalCost').innerHTML = `Total cost : RM${cost}`;
+        
+        }
+
+
+        function subsButton () {
+            const buttonElement = document.querySelector('.subs-button');
+
+            if (buttonElement.innerHTML === 'Subscribe') {
+                console.log(buttonElement.innerHTML = 'Subscribed');
+            } else {
+                console.log(buttonElement.innerHTML = 'Subscribe');
+            }
+        }
+
+        
+    </script>
+</body>
+</html>
