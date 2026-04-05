@@ -8,124 +8,37 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"rel="stylesheet">
     <title>Form Validation</title>
 
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-family: 'roboto', sans-serif;
-        }
-
-        .form-container {
-            display: flex;
-            flex-direction: column;
-            align-items: flex-start;
-            gap: 2rem;
-            box-shadow: 0px 0px 24px 4px rgba(0,0,0,0.66);
-            height: 550px;
-            width: 550px;
-            border-radius: 20px;
-
-        }
-
-        .title {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background-color: royalblue;
-            width: 100%;
-            height: 100px;
-            border-radius: 20px 20px 0 0;
-        }
-
-        .form {
-            padding: 30px;
-            width: 100%;
-        }
-
-        .form-group {
-            display: flex;
-            flex-direction: column;
-            position: relative;
-            margin-bottom: 20px;
-            gap: 0.5rem;
-        }
-
-        .form-group input {
-            width: 100%;
-            padding: 10px;
-            border: 2px solid #f0f0f0;
-            border-radius: 10px;
-            font-size: 14px;
-        }
-
-        .form-group input:focus {
-            outline: none;
-            border-color: royalblue;
-        }
-
-        .form-group i {
-            position: absolute;
-            z-index: 100;
-            right: 15px;
-            top: 34px;
-        }
-
-        .btn-container {
-            display: flex;
-            justify-content: center;
-        }
-
-        .btn-container button {
-            width: 100%;
-            padding: 10px;
-            border-radius: 8px;
-            background-color: transparent;
-            cursor: pointer;
-            font-size: 14px;
-            border: 2px solid royalblue;
-            color: royalblue;
-        }
-
-        .btn-container button:hover {
-            color: white;
-            background-color: royalblue;
-        }
-    </style>
-
+    <link rel="stylesheet" href="style/style.css">
 </head>
 <body>
     <div class="form-container">
         <div class="title">
             <h2>Form Validation</h2>
         </div>
-        <form class="form">
+        <form class="form" novalidate>
             <div class="form-group">
                 <label for>Username:</label>
                 <input id="username" type="text" placeholder="Enter Your Name" autocomplete="off">
                 <i><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#EA3323"><path d="m40-120 440-760 440 760H40Zm138-80h604L480-720 178-200Zm330.5-51.5Q520-263 520-280t-11.5-28.5Q497-320 480-320t-28.5 11.5Q440-297 440-280t11.5 28.5Q463-240 480-240t28.5-11.5ZM440-360h80v-200h-80v200Zm40-100Z"/></svg></i>
+                <small>Username can't be empty</small>
             </div>
             <div class="form-group">
                 <label for>Email:</label>
                 <input id="email" type="email" placeholder="Enter Your Email" autocomplete="off">
                 <i><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#EA3323"><path d="m40-120 440-760 440 760H40Zm138-80h604L480-720 178-200Zm330.5-51.5Q520-263 520-280t-11.5-28.5Q497-320 480-320t-28.5 11.5Q440-297 440-280t11.5 28.5Q463-240 480-240t28.5-11.5ZM440-360h80v-200h-80v200Zm40-100Z" /></svg></i>
+                <small>Email can't be empty</small>
             </div>
             <div class="form-group">
                 <label for>Password:</label>
                 <input id="password" type="password" placeholder="Enter Your password" autocomplete="off">
                 <i><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#EA3323"><path d="m40-120 440-760 440 760H40Zm138-80h604L480-720 178-200Zm330.5-51.5Q520-263 520-280t-11.5-28.5Q497-320 480-320t-28.5 11.5Q440-297 440-280t11.5 28.5Q463-240 480-240t28.5-11.5ZM440-360h80v-200h-80v200Zm40-100Z" /></svg></i>
+                <small>Password can't be empty</small>
             </div>
             <div class="form-group">
                 <label for>Retype Password:</label>
                 <input id="retype-password" type="password" placeholder="Enter Your password" autocomplete="off">
                 <i><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#EA3323"><path d="m40-120 440-760 440 760H40Zm138-80h604L480-720 178-200Zm330.5-51.5Q520-263 520-280t-11.5-28.5Q497-320 480-320t-28.5 11.5Q440-297 440-280t11.5 28.5Q463-240 480-240t28.5-11.5ZM440-360h80v-200h-80v200Zm40-100Z" /></svg></i>
+                <small>Field cannot be blank</small>
             </div>
             <div class="btn-container">
                 <button>Submit</button>
@@ -134,7 +47,51 @@
     </div>
 
     <script>
-        
+        const form = document.querySelector('.form');
+        const inputUsernameElement = document.getElementById('username');
+        const inputEmailElement = document.getElementById('email');
+        const inputPasswordElement = document.getElementById('password');
+        const inputRetypePasswordElement = document.getElementById('retype-password');
+
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            validateForm();
+        });
+
+        function validateForm(){
+            const usernameValue = inputUsernameElement.value.trim();
+            const emailValue = inputEmailElement.value.trim();
+            const passwordValue = inputPasswordElement.value.trim();
+            const retypePasswordValue = inputRetypePasswordElement.value.trim();
+
+            if (usernameValue === '') {
+                inputUsernameElement.parentElement.classList.add('error');
+            } else {
+                inputUsernameElement.parentElement.classList.remove('error');
+            }
+
+            if (emailValue === '') {
+                inputEmailElement.parentElement.classList.add('error');
+            } else {
+                inputEmailElement.parentElement.classList.remove('error');
+            }
+
+            if (passwordValue === '') {
+                inputPasswordElement.parentElement.classList.add('error');
+            } else {
+                inputPasswordElement.parentElement.classList.remove('error');
+            }
+
+            if (retypePasswordValue === '') {
+                inputRetypePasswordElement.parentElement.classList.add('error');
+            } else if(retypePasswordValue !== passwordValue){
+                inputRetypePasswordElement.parentElement.classList.add('error'); // Added this line!
+                const errorSmall = inputRetypePasswordElement.parentElement.querySelector('small');
+                errorSmall.innerText = 'Passwords do not match!';
+            } else {
+                inputRetypePasswordElement.parentElement.classList.remove('error');
+            }
+        }
     </script>
 </body>
 </html>
