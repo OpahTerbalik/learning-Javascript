@@ -20,12 +20,36 @@
     <button onclick="costOrder();">Calculate</button>
     <p class="totalCost"></p>
 
+    <button onclick="chooseResult('head');" class="button1">head</button>
+    <button onclick="chooseResult('tail');" class="button2">tail</button>
+    <p class="choose-state"></p>
+
+    <input onkeydown="pressEnter(event)" class="input-Name" type="text" placeholder="Your Name">
+    <button onclick="submitName();" class="submit-Button">Submit</button>
+    <p class="result-Name"></p>
 
     <script>
+
+        function submitName () {
+
+            const inputName = document.querySelector('.input-Name');
+            let resultName = inputName.value;
+            document.querySelector('.result-Name').innerText = `Your Name is : ${resultName}`
+
+        }
+
+        function chooseResult(picked) {
+            document.querySelector('.choose-state');
+
+            
+        }
+
+
 
         function pressEnter(event) {
             if (event.key === 'Enter') {
                 costOrder();
+                submitName();
             }
         }
 

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Counter DOM</title>
+</head>
+<body>
+
+    <p>Counter</p>
+    <h1 class="out-put">0</h1>
+    <button onclick="minusButton();" class="minus-button">-</button>
+    <button onclick="resetButton()" class="reset-button">↻</button>
+    <button onclick="addButton();" class="plus-button">+</button>
+
+
+
+    <script>
+        let output = 0;
+
+        function updateDisplay() {
+            document.querySelector('.out-put').innerHTML = `${output}`;
+        }
+
+        function addButton() {
+            output++;
+            updateDisplay();
+        }
+
+        function minusButton() {
+            output--;
+            updateDisplay();
+        }
+
+        function resetButton() {
+            output = 0;
+            updateDisplay();
+        }
+    </script>
+</body>
+</html>

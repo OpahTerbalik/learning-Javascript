@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cart System</title>
+</head>
+<body>
+    <button onclick="cartAmount(+1)">Add To Cart</button>
+    <button onclick="cartAmount()">+1<cartAmount>
+    <button onclick="cartAmount()">+2</button>
+    <button onclick="cartAmount()">+3</button>
+    <button onclick="cartAmount()">+4</button>
+    <button onclick="cartAmount()">+5</button>
+    <button onclick="cartAmount()">Remove From Cart</button>
+    <button onclick="cartAmount()">-2</button>
+    <button onclick="cartAmount()">-3</button>
+
+    <p class="total-quantity"></p>
+
+    <script>
+        let cartQuantity = 0;
+
+        function cartAmount(amount) {
+            cartQuantity = cartQuantity + amount;
+            document.querySelector('.total-quantity').innerHTML = `Your Cart ${cartQuantity}`
+
+        }
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+    <style>
+        .calculator {
+            max-width: 300px;
+            margin: 2rem auto;
+            padding: 1rem;
+            border: 2px solid #333;
+            border-radius: 10px;
+            text-align: center;
+        }
+        .display-container {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            min-height: 3rem;
+        }
+        .button-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+        }
+        button {
+            padding: 15px;
+            font-size: 1.2rem;
+            cursor: pointer;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+        button:hover { background: #f0f0f0; }
+        .op-btn { background: #ff9800; color: #fff; }
+        .eq-btn { background: #4caf50; color: #fff; grid-column: span 3; }
+        .clear-btn { background: #f44336; color: #fff; grid-column: span 3; }
+    </style>
+</head>
+<body>
+
+    <div class="calculator">
+        <div class="display-container">
+            <span id="num1">0</span>
+            <span id="op-display"></span>
+            <span id="num2"></span>
+            <span id="result-display"></span>
+        </div>
+        
+        <div class="button-grid">
+            <button class="num-btn" data-val="1">1</button>
+            <button class="num-btn" data-val="2">2</button>
+            <button class="num-btn" data-val="3">3</button>
+            <button class="num-btn" data-val="4">4</button>
+            <button class="num-btn" data-val="5">5</button>
+            <button class="num-btn" data-val="6">6</button>
+            <button class="num-btn" data-val="7">7</button>
+            <button class="num-btn" data-val="8">8</button>
+            <button class="num-btn" data-val="9">9</button>
+            <button class="num-btn" data-val="0" style="grid-column: span 2;">0</button>
+            <button class="op-btn" data-op="+">+</button>
+            <button class="op-btn" data-op="-">-</button>
+            <button class="eq-btn">=</button>
+            <button class="clear-btn">C</button>
+        </div>
+    </div>
+
+    <script>
+        const num1Display = document.getElementById('num1');
+        const num2Display = document.getElementById('num2');
+        const opDisplay = document.getElementById('op-display');
+        const resultDisplay = document.getElementById('result-display');
+
+        let currentNum = 'num1'; // Tracks which number we're typing into
+
+        // 1. Handle Number Clicks (Using a Loop for multiple buttons)
+        document.querySelectorAll('.num-btn').forEach(button => {
+            button.addEventListener('click', () => {
+                const value = button.getAttribute('data-val');
+                
+                if (currentNum === 'num1') {
+                    if (num1Display.innerText === '0') num1Display.innerText = value;
+                    else num1Display.innerText += value;
+                } else {
+                    if (num2Display.innerText === '') num2Display.innerText = value;
+                    else num2Display.innerText += value;
+                }
+            });
+        });
+
+        // 2. Handle Operator Clicks
+        document.querySelectorAll('.op-btn').forEach(button => {
+            button.addEventListener('click', () => {
+                opDisplay.innerText = button.getAttribute('data-op');
+                currentNum = 'num2'; // Switch input to the second number
+            });
+        });
+
+        // 3. Calculation
+        document.querySelector('.eq-btn').addEventListener('click', () => {
+            if (num2Display.innerText === '') return; // Don't calculate if second number is missing
+
+            const val1 = parseInt(num1Display.innerText);
+            const val2 = parseInt(num2Display.innerText);
+            const op = opDisplay.innerText;
+            
+            let result = 0;
+            if (op === '+') result = val1 + val2;
+            if (op === '-') result = val1 - val2;
+            
+            resultDisplay.innerText = ' = ' + result;
+        });
+
+        // 4. Clear
+        document.querySelector('.clear-btn').addEventListener('click', () => {
+            num1Display.innerText = '0';
+            num2Display.innerText = '';
+            opDisplay.innerText = '';
+            resultDisplay.innerText = '';
+            currentNum = 'num1';
+        });
+
+    </script>
+</body>
+</html>
